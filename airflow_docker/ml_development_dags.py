@@ -37,9 +37,9 @@ def feature_engineering(**kwargs):
     # Xcom을 사용한 데이터 저장
     ti = kwargs['ti']
     ti.xcom_push(key = 'X_train', value = X_train.to_json())
-    ti.xcom_push(key = 'X_test', value = X_train.to_json())
-    ti.xcom_push(key = 'y_train', value = X_train.to_json(orient = 'records'))
-    ti.xcom_push(key = 'y_test', value = X_train.to_json(orient = 'records'))
+    ti.xcom_push(key = 'X_test', value = X_test.to_json())
+    ti.xcom_push(key = 'y_train', value = y_train.to_json(orient = 'records'))
+    ti.xcom_push(key = 'y_test', value = y_test.to_json(orient = 'records'))
 
 def train_model(model_name,**kwargs):
     ti = kwargs['ti']
@@ -50,7 +50,7 @@ def train_model(model_name,**kwargs):
 
     if model_name == 'RandomForestCLF':
         model = RandomForestClassifier(n_estimators=50, max_depth=8)
-    elif model_name == 'GradinetboostingCLF':
+    elif model_name == 'GradientboostingCLF':
         model = GradientBoostingClassifier(n_estimators=50, max_depth=8)
     else:
         raise ValueError("Unsupported model : "+ model_name)
@@ -65,7 +65,7 @@ def train_model(model_name,**kwargs):
 def select_best_model(**kwargs):
     ti = kwargs['ti']
     rf_performance = ti.xcom_pull(key='performance_RandomForestCLF', task_ids = 'train_rf')
-    gb_performance = ti.xcom_pull(key='performance_GradinetboostingCLF', task_ids = 'train_gb')
+    gb_performance = ti.xcom_pull(key='performance_GradientboostingCLF', task_ids = 'train_gb')
 
     best_model = 'Radomforest' if rf_performance > gb_performance else 'GradientBoosting'
     print(f"Best model is {best_model} with performance {max(rf_performance, gb_performance)}")
