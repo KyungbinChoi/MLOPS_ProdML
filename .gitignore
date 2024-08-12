@@ -1,1 +1,3 @@
-./mlflow_project/mlruns/*
+mlflow_project/mlruns/*
+mlflow_project/mlartifacts/*
+**/.DS_Store
