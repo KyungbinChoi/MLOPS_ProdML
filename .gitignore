@@ -1,3 +1,5 @@
 mlflow_project/mlruns/*
 mlflow_project/mlartifacts/*
 **/.DS_Store
+bank_mkt_practice/mlartifacts/*
+bank_mkt_practice/mlruns/*
