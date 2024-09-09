@@ -3,3 +3,7 @@ mlflow_project/mlartifacts/*
 **/.DS_Store
 bank_mkt_practice/mlartifacts/*
 bank_mkt_practice/mlruns/*
+solar_power_practice/airflow/logs*
+solar_power_practice/airflow/dags/__pycache__/*
+solar_power_practice/airflow/dags/tasks/__pycache__/*
+solar_power_practice/airflow/plugins/*
